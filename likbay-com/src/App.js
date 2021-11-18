@@ -12,17 +12,24 @@ import Dashboard from './components/Dashboard';
 
 // pages
 import { ProductList, ProductCreate, ProductEdit } from './pages/product';
+import { BoutiqueList, BoutiqueCreate, BoutiqueEdit } from './pages/boutique';
+import LoginPage  from './pages/login';
+
+// utils
+import authProvider from './utils/authProvider';
+import { auth0 } from "./utils/authProvider";
 
 // browser history
 import { createBrowserHistory as createHistory } from 'history';
 const history = createHistory();
 
-const createApolloClient = async () => {
+
+const createApolloClient = async (token) => {
   return new ApolloClient({
       uri: 'https://charming-tarpon-80.hasura.app/v1/graphql',
       cache: new InMemoryCache(),
       headers: {
-          'x-hasura-admin-secret': 'H8ACM0zXZTsxSsBxTCIGxCpWKaPxh09ARSOCRuXBnRfqWw2rWvSnICIambDYbLWD'
+          'Authorization': `Bearer ${token}`
       }
   })
 }
@@ -33,7 +40,17 @@ function App() {
   useEffect(() => {
     const buildDataProvider = async () => {
 
-        const apolloClient = await createApolloClient();
+        const isAuthenticated = await auth0.isAuthenticated();
+
+        if(!isAuthenticated) {
+            return;
+        }
+        
+        const token = await auth0.getIdTokenClaims();
+        const idToken = token.__raw;
+        console.log(idToken);
+
+        const apolloClient = await createApolloClient(idToken);
 
         const dataProvider = await buildHasuraProvider({
             client: apolloClient
@@ -43,16 +60,23 @@ function App() {
     buildDataProvider();
   }, []);
 
+  if(dataProvider == {}) {
+    return <div>Loading...</div>
+  }
+
   return (
+    
     <Admin 
+      authProvider={authProvider}
       dataProvider={dataProvider} 
       title="Likbay commerciaux"
-      //dashboard={Dashboard}
+      dashboard={Dashboard}
+      loginPage={LoginPage}
       history={history}
     >
       <Resource name="product" list={ProductList} edit={ProductEdit} create={ProductCreate} />
+      <Resource name="boutique" list={BoutiqueList} edit={BoutiqueEdit} create={BoutiqueCreate} />
       <Resource name="category"/>
-      <Resource name="boutique"/>
       <Resource name="subscription" />
     </Admin>
   );

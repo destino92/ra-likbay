@@ -6,6 +6,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 export default () => (
     <Card>
         <CardHeader title="Bienvenue sur l'interface commerciaux Likbay" />
-        <CardContent>Gestion des produits et des commandes</CardContent>
+        <CardContent>Gestion des produits, boutiques et commandes</CardContent>
     </Card>
 );

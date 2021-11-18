@@ -6,9 +6,6 @@ import {
     Datagrid,
     TextField,
     ReferenceField,
-    ArrayInput,
-    ArrayField,
-    SimpleFormIterator,
     BooleanField,
     DateField,
     ReferenceInput,
@@ -42,7 +39,7 @@ const ProductFilter = (props) => (
 );
 
 export const ProductList = (props) => (
-    <List filters={<ProductFilter />} bulkActionButtons={true} {...props}>
+    <List bulkActionButtons={false} {...props}>
         <Datagrid rowClick="edit">
             <TextField source="id" label="Identifiant du produit"/>
             <TextField source="nom" label="Nom"/>
