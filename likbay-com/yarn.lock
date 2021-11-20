@@ -10945,7 +10945,7 @@
   dependencies:
     "@babel/runtime" "^7.12.1"
 
-"react-final-form@^6.2.1", "react-final-form@^6.5.2":
+"react-final-form@^6.2.1", "react-final-form@^6.5.2", "react-final-form@^6.5.7":
   "integrity" "sha512-o7tvJXB+McGiXOILqIC8lnOcX4aLhIBiF/Xi9Qet35b7XOS8R7KL8HLRKTfnZWQJm6MCE15v1U0SFive0NcxyA=="
   "resolved" "https://registry.npmjs.org/react-final-form/-/react-final-form-6.5.7.tgz"
   "version" "6.5.7"

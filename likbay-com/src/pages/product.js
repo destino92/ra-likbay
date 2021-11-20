@@ -8,6 +8,7 @@ import {
     ReferenceField,
     BooleanField,
     DateField,
+    NumberField,
     ReferenceInput,
     BooleanInput,
     SelectInput,
@@ -74,12 +75,12 @@ export const ProductList = (props) => (
                 displayDataTypes: false,
                 }}
             />
-            <NumberInput source="poids" label="Poids"/>
+            <NumberField source="poids" label="Poids"/>
             <ReferenceField source="subscription" reference="subscription">
                 <TextField source="subscription" label="Subscription"/>
             </ReferenceField>
             <TextField source="coupon" label="Coupon"/>
-            <TextInput source="guarantie" label="Guarantie"/>
+            <TextField source="guarantie" label="Guarantie"/>
             <ReferenceField source="boutique" reference="boutique">
                 <TextField source="boutique" label="boutique"/>
             </ReferenceField>

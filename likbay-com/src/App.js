@@ -37,6 +37,8 @@ const createApolloClient = async (token) => {
 function App() {
   const [dataProvider, setDataProvider] = useState({});
 
+  console.log(dataProvider)
+
   useEffect(() => {
     const buildDataProvider = async () => {
 
@@ -52,20 +54,23 @@ function App() {
 
         const apolloClient = await createApolloClient(idToken);
 
-        const dataProvider = await buildHasuraProvider({
+        const emp_dataProvider = await buildHasuraProvider({
             client: apolloClient
         });
-        setDataProvider(() => dataProvider);
+        console.log(emp_dataProvider)
+        setDataProvider(() => emp_dataProvider);
     }
+    console.log(dataProvider)
     buildDataProvider();
   }, []);
 
-  if(dataProvider == {}) {
-    return <div>Loading...</div>
-  }
+  
+
+  //if(!dataProvider) {
+  //  return <div>Loading...</div>
+  //}
 
   return (
-    
     <Admin 
       authProvider={authProvider}
       dataProvider={dataProvider} 
