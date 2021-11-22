@@ -34,7 +34,7 @@ const BoutiqueFilter = (props) => (
 );
 
 export const BoutiqueList = (props) => (
-    <List bulkActionButtons={false} {...props}>
+    <List filters={<BoutiqueFilter />} bulkActionButtons={false} {...props}>
         <Datagrid rowClick="edit">
             <TextField source="name" label="Nom"/>
             <TextField source="niu" label="NIU"/>
@@ -44,9 +44,8 @@ export const BoutiqueList = (props) => (
             <TextField source="city" label="ville"/>
             <BooleanField source="active" valueLabelTrue="Activé" valueLabelFalse="Pas activé"/>
             <ReferenceField source="abonnement_id" reference="subscription">
-                <TextField source="abonnement_id" label="Abonnement"/>
+                <TextField source="label"/>
             </ReferenceField>
-            <TextField source="prix" label="Prix"/>
             <DateField source="created_at"/>
             <DateField source="updated_at"/>
         </Datagrid>
@@ -71,9 +70,10 @@ export const BoutiqueEdit = (props) => (
             <TextInput source="rccm" label="RCCM" />
             <TextInput source="address" label="adresse" />
             <TextInput source="tel" label="tel" />
+            <TextInput source="city" label="ville" />
             <NullableBooleanInput source="active" label="Neuve ou utilisé?"/>
             <ReferenceInput source="abonnement_id" reference="subscription">
-                <SelectInput optionText="Abonnement" />
+                <SelectInput optionText="label" />
             </ReferenceInput>
         </SimpleForm>
     </Edit>
@@ -87,9 +87,10 @@ export const BoutiqueCreate = (props) => (
             <TextInput source="rccm" label="RCCM" />
             <TextInput source="address" label="adresse" />
             <TextInput source="tel" label="tel" />
+            <TextInput source="city" label="ville" />
             <NullableBooleanInput source="active" label="Neuve ou utilisé?"/>
             <ReferenceInput source="abonnement_id" reference="subscription">
-                <SelectInput optionText="Abonnement" />
+                <SelectInput optionText="label" />
             </ReferenceInput>
         </SimpleForm>
     </Create>

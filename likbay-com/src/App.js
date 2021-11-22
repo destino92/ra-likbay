@@ -81,7 +81,7 @@ function App() {
     >
       <Resource name="product" list={ProductList} edit={ProductEdit} create={ProductCreate} />
       <Resource name="boutique" list={BoutiqueList} edit={BoutiqueEdit} create={BoutiqueCreate} />
-      <Resource name="category"/>
+      <Resource name="category" />
       <Resource name="subscription" />
     </Admin>
   );

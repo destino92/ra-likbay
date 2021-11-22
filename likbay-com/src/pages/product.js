@@ -27,31 +27,31 @@ const ProductFilter = (props) => (
     <Filter {...props}>
         <TextInput label="Rechercher par nom" source="Nom" alwaysOn />
         <ReferenceInput label="Categorie" source="category" reference="category" allowEmpty>
-            <SelectInput optionText="Catégories" />
+            <SelectInput optionText="label" />
         </ReferenceInput>
         <ReferenceInput label="Boutique" source="boutique" reference="boutique" allowEmpty>
-            <SelectInput optionText="Boutiques" />
+            <SelectInput optionText="name" />
         </ReferenceInput>
         <ReferenceInput label="subscription" source="subscription" reference="subscription" allowEmpty>
-            <SelectInput optionText="subscription" />
+            <SelectInput optionText="label" />
         </ReferenceInput>
-        <BooleanInput source="etat" label="Neuve ou utilisé?" allowEmpty />
+        <BooleanInput source="etat" label="Utilisé?" allowEmpty />
     </Filter>
 );
 
 export const ProductList = (props) => (
-    <List bulkActionButtons={false} {...props}>
+    <List filters={<ProductFilter />} bulkActionButtons={true} {...props}>
         <Datagrid rowClick="edit">
-            <TextField source="id" label="Identifiant du produit"/>
+            {/*<TextField source="id" label="Id du produit"/>*/}
             <TextField source="nom" label="Nom"/>
             <ReferenceField source="category" reference="category">
-                <TextField source="category" label="Category"/>
+                <TextField source="label"/>
             </ReferenceField>
-            <TextField source="detail" label="Détail"/>
-            <BooleanField source="etat" label="Neuve ou utilisé?"/>
+            {/*<TextField source="detail" label="Détail"/>*/}
+            <BooleanField source="etat" label="Utilisé?"/>
             <TextField source="marque" label="Marque"/>
             <TextField source="prix" label="Prix"/>
-            <JsonField
+            {/*<JsonField
                 source="images"
                 addLabel={true}
                 jsonString={false} // Set to true if the value is a string, default: false
@@ -62,8 +62,8 @@ export const ProductList = (props) => (
                 enableClipboard: false,
                 displayDataTypes: false,
                 }}
-            />
-            <JsonField
+            />*/}
+            {/*<JsonField
                 source="videos"
                 addLabel={true}
                 jsonString={false} // Set to true if the value is a string, default: false
@@ -74,15 +74,15 @@ export const ProductList = (props) => (
                 enableClipboard: false,
                 displayDataTypes: false,
                 }}
-            />
-            <NumberField source="poids" label="Poids"/>
+            />*/}
+            {/*<NumberField source="poids" label="Poids"/>*/}
             <ReferenceField source="subscription" reference="subscription">
-                <TextField source="subscription" label="Subscription"/>
+                <TextField source="label"/>
             </ReferenceField>
-            <TextField source="coupon" label="Coupon"/>
+            {/*<TextField source="coupon" label="Coupon"/>*/}
             <TextField source="guarantie" label="Guarantie"/>
             <ReferenceField source="boutique" reference="boutique">
-                <TextField source="boutique" label="boutique"/>
+                <TextField source="name"/>
             </ReferenceField>
             <DateField source="created_at"/>
             <DateField source="updated_at"/>
@@ -108,7 +108,7 @@ export const ProductEdit = (props) => (
                 <SelectInput optionText="label" />
             </ReferenceInput>
             <RichTextInput source="detail" label="Détail"/>
-            <BooleanInput source="etat" label="Neuve ou utilisé?"/>
+            <BooleanInput source="etat" label="Utilisé?"/>
             <TextInput source="marque" label="Marque"/>
             <TextInput source="prix" label="Prix"/>
             <JsonInput
@@ -139,9 +139,9 @@ export const ProductEdit = (props) => (
             </ReferenceInput>
             <TextInput source="coupon" label="coupon"/>
             <TextInput source="guarantie" label="guarantie"/>
-            {/*<ReferenceInput source="boutique" reference="boutique" label="boutique">
-                <SelectInput optionText="label" />
-            </ReferenceInput>*/}
+            <ReferenceInput source="boutique" reference="boutique" label="boutique">
+                <SelectInput optionText="name" />
+            </ReferenceInput>
         </SimpleForm>
     </Edit>
 );
@@ -154,7 +154,7 @@ export const ProductCreate = (props) => (
                 <SelectInput optionText="label" />
             </ReferenceInput>
             <RichTextInput source="detail" label="Détail"/>
-            <BooleanInput source="etat" label="Neuve ou utilisé?"/>
+            <BooleanInput source="etat" label="Utilisé?"/>
             <TextInput source="marque" label="Marque"/>
             <TextInput source="prix" label="Prix"/>
             <JsonInput
@@ -185,9 +185,9 @@ export const ProductCreate = (props) => (
             </ReferenceInput>
             <TextInput source="coupon" label="coupon"/>
             <TextInput source="guarantie" label="guarantie"/>
-            {/*<ReferenceInput source="boutique" reference="boutique" label="boutique">
-                <SelectInput optionText="label" />
-            </ReferenceInput>*/}
+            <ReferenceInput source="boutique" reference="boutique" label="boutique">
+                <SelectInput optionText="name" />
+            </ReferenceInput>
         </SimpleForm>
     </Create>
 );
